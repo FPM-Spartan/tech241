@@ -1,0 +1,25 @@
+---
+# specify what node will perform the task
+- hosts: app
+# see the logs by gathering facts
+  gather_facts: yes
+# admin access
+  become: true
+# add the instructions - install nginx in the app agent node  tasks:
+  - name: Installing Nginx
+    apt: pkg=nginx state=present
+
+  - name: delete nginx default sites file
+    shell: sudo rm /etc/nginx/sites-available/default       
+
+  - name: copy default sites file with configured reverse p$    copy:
+      src: /etc/ansible/nginx-config/default
+      dest: /etc/nginx/sites-available/default
+
+  - name: Restart Nginx service
+    service:
+      name: nginx
+      state: restarted
+
+# Check that status of nginx = actively running
+# go back to ad hoc command to check status

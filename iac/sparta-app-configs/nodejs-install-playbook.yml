@@ -1,0 +1,65 @@
+---
+# specify what node will perform the task
+- hosts: app
+# see the logs by gathering facts
+  gather_facts: yes
+# admin access
+  become: true
+# add the instructions - install sparta app and nodejs in the app agent node
+  tasks:
+    - name: Update APT cache
+      apt:
+        update_cache: yes
+
+    - name: Upgrade packages
+      apt:
+        upgrade: dist
+
+    - name: Clone repository
+      git:
+        repo: https://github.com/FPM-Spartan/tech241-sparta-app.git
+        dest: app
+
+    - name: Install Node.js
+      get_url:
+        url: https://deb.nodesource.com/setup_12.x
+        dest: /tmp/node_setup.sh
+
+    - name: Run Node.js setup script
+      command: sudo -E bash /tmp/node_setup.sh
+
+    - name: Install Node.js package
+      apt:
+        name: nodejs
+        state: present
+
+    - name: Install PM2
+      npm:
+        name: pm2
+        global: yes
+        state: present
+
+    - name: Install npm packages
+      shell: npm install
+      args:
+        chdir: /home/ubuntu/app/spartatest
+        warn: false
+
+    - name: delete environment file
+      shell: sudo rm /etc/environment
+
+    - name: copy new environment file with DB_HOST set.
+      copy:
+        src: /etc/ansible/env-var-config/environment
+        dest: /etc/
+
+    - name: seed database
+      command: node /home/ubuntu/app/spartatest/seeds/seed.js
+
+    - name: Stop PM2 processes
+      shell: pm2 kill
+
+    - name: Start the application
+      shell: pm2 start app.js
+      args:
+        chdir: /home/ubuntu/app/spartatest/

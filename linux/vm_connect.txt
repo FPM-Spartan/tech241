@@ -1,0 +1,14 @@
+AZURE
+APP:
+ssh -i ~/.ssh/tech241-peter-az-key adminuser@20.90.163.107
+
+DB:
+ssh -i ~/.ssh/tech241-peter-az-key adminuser@20.90.164.54
+
+---
+
+AWS SSH commands dump.
+
+ssh -i "~/.ssh/tech241.pem" ubuntu@ec2-54-154-228-31.eu-west-1.compute.amazonaws.com
+
+ssh -i "~/.ssh/tech241.pem" ubuntu@ec2-54-75-96-25.eu-west-1.compute.amazonaws.com

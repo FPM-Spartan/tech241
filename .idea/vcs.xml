@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/api_basics" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/json_to_yaml" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_collections" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_collections_tasks" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_control_flow" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_dice_game" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_libraries" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_oop" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_scripting" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/python_variables" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/random_notes" vcs="Git" />
+  </component>
+</project>

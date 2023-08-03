@@ -1,0 +1,35 @@
+---
+# create playbook to install mongodb in db agent nodes
+
+- hosts: db
+  # ^ specify host name
+  gather_facts: yes
+  # ^ get logs
+  become: true
+  # ^ enable admin access
+
+# tasks (install mongodb)
+  tasks:
+  - name: Installing Mongodb
+    apt: pkg=mongodb state=present
+# delete mongodb.conf
+# copy new mongodb.conf with configured bindIP from controller to agent
+  - name: delete mongodb.conf
+    shell: rm /etc/mongodb.conf
+
+  - name: copy new mongodb.conf from controller to agent
+    copy:
+      src: /etc/ansible/mongodb-config/mongodb.conf
+      dest: /etc/
+
+# restart mongodb
+  - name: Restart mongodb
+    shell: sudo systemctl restart mongodb
+
+# enable mongodb
+  - name: Enable mongodb
+    shell: sudo systemctl enable mongodb
+
+# verify the installation worked and the db is running
+
+# check status if it's running or not using an ad hoc command

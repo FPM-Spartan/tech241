@@ -1,0 +1,20 @@
+---
+# Select type of API version and type of service/object
+apiVersion: v1
+kind: Service
+# metadata for name
+metadata:
+  name: nginx-svc
+  namespace: default # sre, you can have two files with the same name as long as they are not in the same folder/are in different folders
+# specification to include port selector to connect to the deployment
+spec:
+  ports:
+  - nodePort: 30001 # range is 30000 - 32768
+    port: 80
+    target: 80
+
+# define the selector and label to connect to ngins deployment
+  selector:
+    app: nginx # this lavel connects this service to deployment
+# Create nodePort type of deployment
+  type: NodePort # also use LoadBalancer - for local use cluster IP

@@ -1,0 +1,10 @@
+---
+
+- name: import nginx playbook
+  import_playbook: nginx-playbook.yml
+
+- name: import mongodb playbook
+  import_playbook: mongodb-playbook.yml
+
+- name: import nodejs install playbook
+  import_playbook: nodejs-install-playbook.yml

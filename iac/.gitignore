@@ -1,0 +1,11 @@
+terraform-files/main.tf
+terraform-files/vpc.tf
+terraform
+
+.terraform.lock.hcl
+
+terraform.tfstate
+
+terraform.tfstate.backup
+
+variable.tf
